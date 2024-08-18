@@ -18,6 +18,6 @@ if "__main__" == __name__:
     parser = ap.ArgumentParser()
     parser.add_argument("--nmap", help="ip address to scan")
     parser.add_argument("--links", help="get all links of url")
-    parser.add_argument("--IA", action="store_true", help="Set this flag to true if included")
+    parser.add_argument("--IA", action="store_true", help="Set IA to analyze results")
     args = parser.parse_args()
     main(**vars(args))
