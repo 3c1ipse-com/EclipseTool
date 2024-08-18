@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-from colorama import Fore, Back, Style, init
+from colorama import Fore, Style
+from utils import openai_client
 
 def get_links(url):
     domain = urlparse(url).netloc
@@ -40,3 +41,26 @@ def get_links(url):
 
     for link in all_links:
         print(f"{Fore.BLUE}{link}{Style.RESET_ALL}")
+
+    return all_links
+
+
+def analyze_with_openai(links):
+    if not links:
+        print("No se proporcionaron links válidos para analizar.")
+        return
+
+    formatted_links = "\n".join(links)
+
+    print("Analizando resultados con OpenAI...")
+    response = openai_client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "Eres un experto en ciberseguridad."},
+            {"role": "user",
+             "content": f"Estos son los resultados de un escaneo de links:\n{formatted_links}\nIdentifica posibles vulnerabilidades y ataques que podrían realizarse."},
+        ]
+    )
+    analysis = response.choices[0].message.content
+    print(f"{Fore.GREEN}Análisis de OpenAI:{Style.RESET_ALL}\n=========================\n"
+          f"{Fore.BLUE}{analysis}")

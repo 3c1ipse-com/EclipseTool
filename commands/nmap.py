@@ -1,6 +1,7 @@
 import subprocess
 import re
 from utils import openai_client
+from colorama import Fore, Style
 
 def run_nmap_scan(ip):
     print(f"Realizando un escaneo rápido de todos los puertos en {ip}...")
@@ -33,4 +34,6 @@ def analyze_with_openai(scan_result):
         ]
     )
     analysis = response.choices[0].message.content
-    print(f"Análisis de OpenAI:\n{analysis}")
+    print(f"{Fore.GREEN}Análisis de OpenAI:{Style.RESET_ALL}\n=========================\n"
+          f"{Fore.BLUE}{analysis}")
+
