@@ -37,6 +37,24 @@ Para instalar y configurar _Eclipse Tool_, sigue los siguientes pasos:
     python3 main.py -h
     ```
 
+## Configuración de OpenAI
+
+Para utilizar la funcionalidad de análisis con inteligencia artificial, necesitas configurar la clave API de OpenAI. Establece la variable de entorno `OPENAI_API_KEY` con tu clave API de OpenAI.
+
+En sistemas Unix (Linux, macOS), puedes hacerlo de la siguiente manera:
+
+```bash
+export OPENAI_API_KEY="sk-XXXXXXXX"
+```
+
+En sistemas Windows, utiliza el siguiente comando en la línea de comandos:
+
+```cmd
+set OPENAI_API_KEY="sk-XXXXXXXX"
+```
+
+Asegúrate de reemplazar `"sk-XXXXXXXX"` con tu clave API real.
+
 ## Uso
 
 _Eclipse Tool_ se puede utilizar desde la línea de comandos con los siguientes parámetros:
